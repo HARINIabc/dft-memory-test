@@ -1,0 +1,4 @@
+$ '/build/bin/iverilog' -B '/build/lib/ivl'  -Ttyp -o Netlists/counter.chained.v.tb.sv.a.out Netlists/counter.chained.v.tb.sv 2>&1
+$ '/build/bin/vvp' Netlists/counter.chained.v.tb.sv.a.out
+Success: expected 00010010001001001 got 00010010001001001
+SUCCESS_STRING
