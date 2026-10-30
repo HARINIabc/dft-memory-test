@@ -1,0 +1,7 @@
+# synth_wrapper.ys : cell count of the wrapped counter, same gate set as synth.ys
+read_verilog ../counter.v ../wrapper/wbr_cell.v ../wrapper/counter_wrapper.v
+synth -top counter_wrapper -flatten
+dfflegalize -cell $_DFF_P_ x -cell $_DFF_PN0_ x
+abc -g AND,NAND,OR,NOR,XOR,XNOR,MUX
+opt_clean -purge
+stat

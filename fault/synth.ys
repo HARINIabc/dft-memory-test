@@ -1,0 +1,12 @@
+# synth.ys : synthesise counter.v to 2-input gates + plain D flip-flops,
+# so the reset and enable logic are real gates (as with a standard-cell
+# library such as osu035) and every net can carry a fault.
+read_verilog ../counter.v
+synth -top counter -flatten
+dfflegalize -cell $_DFF_P_ x
+abc -g AND,NAND,OR,NOR,XOR,XNOR,MUX
+opt_clean -purge
+splitnets
+rename -enumerate
+stat
+write_verilog -noattr -noexpr counter_gl.v
